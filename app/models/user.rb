@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :pins
+  #user has many pins, user's pins get detroyd when they destroy their account
+  has_many :pins, dependent: :destroy
 
   #user's name can't be blank
   validates :name, presence: true
